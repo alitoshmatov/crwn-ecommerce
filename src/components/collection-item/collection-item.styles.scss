@@ -4,6 +4,7 @@
     flex-direction: column;
     height: 350px;
     align-items: center;
+    position: relative;
 
     .image {
         width: 100%;
@@ -11,6 +12,7 @@
         background-size: cover;
         background-position: center;
         margin-bottom: 5px;
+        transition: 0.2s opacity ease;
     }
 
     .collection-footer {
@@ -23,8 +25,21 @@
         .name {
             margin-bottom: 15px;
         }
-
-        .price {
+    }
+    .custom-button {
+        position: absolute;
+        width: 80%;
+        top: 255px;
+        opacity: 0.85;
+        display: none;
+        transition: 0.2s opacity all;
+    }
+    &:hover {
+        .image {
+            opacity: 0.8;
+        }
+        .custom-button {
+            display: inline-block;
         }
     }
 }

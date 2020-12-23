@@ -15,6 +15,7 @@ class App extends React.Component {
     unSubscribeFromSnapshot = null;
 
     componentDidMount() {
+        console.log(process.env);
         const { setCurrentUser } = this.props;
         this.unSubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
             if (user) {
@@ -45,7 +46,7 @@ class App extends React.Component {
                     <Route exact path="/" component={Homepage} />
                     <Route path="/shop" component={ShopPage} />
                     <Route
-                        path="/signin"
+                        path="/signin/:customer/:id"
                         render={() =>
                             this.props.currentUser ? (
                                 <Redirect to="/" />
