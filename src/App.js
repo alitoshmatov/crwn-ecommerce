@@ -9,10 +9,10 @@ import SignInAndSignUp from "./pages/sign-in-and-sign-up/sing-in-and-sign-up.com
 import { auth, createProfileDocument } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
 import setCurrentUser from "./redux/user/user.action";
+import Checkout from "./pages/checkout/checkout.component";
 
 class App extends React.Component {
     unSubscribeFromAuth = null;
-    unSubscribeFromSnapshot = null;
 
     componentDidMount() {
         console.log(process.env);
@@ -36,7 +36,6 @@ class App extends React.Component {
 
     componentWillUnmount() {
         this.unSubscribeFromAuth();
-        this.unSubscribeFromSnapshot();
     }
     render() {
         return (
@@ -45,8 +44,9 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/" component={Homepage} />
                     <Route path="/shop" component={ShopPage} />
+                    <Route path="/checkout" component={Checkout} />
                     <Route
-                        path="/signin/:customer/:id"
+                        path="/signin"
                         render={() =>
                             this.props.currentUser ? (
                                 <Redirect to="/" />
