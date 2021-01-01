@@ -36,6 +36,38 @@ export const createProfileDocument = async (user, other) => {
     return userRef;
 };
 
+//creates a new collection in firestore with a given name and takes collection items as an array in second arugement
+export const createCollectionAndDocuments = async (
+    collectionName,
+    documents
+) => {
+    const batch = firestore.batch();
+
+    const collectionRef = firestore.collection(collectionName);
+    documents.forEach((document) => {
+        const newDoc = collectionRef.doc();
+        batch.set(newDoc, document);
+    });
+
+    return await batch.commit();
+};
+
+export const formatCollections = (snapshot) => {
+    const formattedData = snapshot.docs.map((doc) => {
+        const { title, items } = doc.data();
+        return {
+            id: doc.id,
+            routeName: encodeURI(title.toLowerCase()),
+            title,
+            items,
+        };
+    });
+    return formattedData.reduce((accumilator, collection) => {
+        accumilator[collection.title.toLowerCase()] = collection;
+        return accumilator;
+    }, {});
+};
+
 const provider = new firebase.auth.GoogleAuthProvider();
 
 provider.setCustomParameters({ prompt: "select_account" });
