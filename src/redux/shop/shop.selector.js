@@ -14,3 +14,8 @@ export const selectShopCollectionsArray = createSelector(
 
 export const selectCollection = (name) =>
     createSelector([selectShopCollections], (collections) => collections[name]);
+
+export const selectIsFetching = createSelector(
+    [selectShop],
+    (shop) => shop.isFetching
+);
