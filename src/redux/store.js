@@ -2,11 +2,10 @@ import { applyMiddleware, createStore } from "redux";
 import logger from "redux-logger";
 import rootReducer from "./root-reducer";
 import { persistStore } from "redux-persist";
-import createSagaMiddleWare from "redux-saga";
-import { fetchCollectionStart } from "./shop/shop.sagas";
+// import createSagaMiddleWare from "redux-saga";
 import thunk from "redux-thunk";
 
-const sagaMiddleware = createSagaMiddleWare();
+// const sagaMiddleware = createSagaMiddleWare();
 
 const middleWares = [thunk];
 
